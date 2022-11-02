@@ -19,6 +19,7 @@ function start(){
     bombs = [];
     container.classList.remove("stopClick");
     // clear box
+    document.getElementById('score').innerHTML = ``;
     document.getElementById('container').innerHTML = "";
     // random bombs
     while(bombs.length < 16){
@@ -56,12 +57,14 @@ function bombsCheck(num){
         container.setAttribute('class', 'stopClick')
         for (let i = 0; i < bombs.length; i++) {
             document.getElementById(bombs[i]).setAttribute('class', 'cell trigger')
+            document.getElementById('score').innerHTML = `<h3>Hai innescato una bomba! Hai ottenuto ${score} punti in questa partita.</h3>`;
 
         }
     }
     else{
         document.getElementById(num).setAttribute('class', 'cell safe')
         score++;
+        document.getElementById('score').innerHTML = `<h3>Hai ${score} punti.</h3>`;
     }
     console.log(score)
 }

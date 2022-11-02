@@ -9,11 +9,8 @@ h6{
 }
 body{
     font-family: sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
     min-height: 100vh;
-    flex-wrap: wrap;
     background-color: #7FFFD4;
 }
 
@@ -24,6 +21,7 @@ form{
 }
 
 #container{
+    margin: auto;
     display: flex;
     justify-content: center;
     width:800px;
@@ -59,4 +57,9 @@ form{
 
 .stopClick *{
     pointer-events: none;
+}
+
+#score{
+    text-align: center;
+    margin-top: 10px;
 }
