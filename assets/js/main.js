@@ -1,4 +1,4 @@
-// variables
+// global variables
 let z;
 let bombs = [];
 let score;
@@ -16,6 +16,8 @@ function start(){
     // variables
     score = 0;
     let x = 1;
+    bombs = [];
+    container.classList.remove("stopClick");
     // clear box
     document.getElementById('container').innerHTML = "";
     // random bombs
@@ -51,7 +53,11 @@ function start(){
 function bombsCheck(num){
     if(bombs.includes(num))
     {
-        document.getElementById(num).setAttribute('class', 'cell trigger')
+        container.setAttribute('class', 'stopClick')
+        for (let i = 0; i < bombs.length; i++) {
+            document.getElementById(bombs[i]).setAttribute('class', 'cell trigger')
+
+        }
     }
     else{
         document.getElementById(num).setAttribute('class', 'cell safe')

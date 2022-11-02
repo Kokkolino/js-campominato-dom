@@ -49,8 +49,14 @@ form{
 
 .trigger{
     background-color: #850606;
+    color: white;
 }
 
 .safe{
     background-color: #16166D;
+    color: white;
+}
+
+.stopClick *{
+    pointer-events: none;
 }
