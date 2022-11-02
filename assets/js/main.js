@@ -1,5 +1,4 @@
 // variables
-let x = 1;
 let z;
 // getting the element into the js
 const container = document.getElementById('container');
@@ -7,30 +6,25 @@ const btnStart = document.getElementById('start');
 const btnClear = document.getElementById('clear');
 // linking the functions
 btnStart.addEventListener('click', start);
-btnStart.addEventListener('click', disableButton);
-btnClear.addEventListener('click', clearBox);
-btnClear.addEventListener('click', enableButton);
-
-document.getElementById(bom)
 
 // function
 function start(){
     // input
-    squareNumber = parseInt(document.getElementById('inputNumber').value);
+    squareNumber = parseInt(document.getElementById('difficulty').value);
+    // variables
+    let x = 1;
     let bombs = [];
-    
-    
-    // conditions
-    if (squareNumber < 0){
-        squareNumber = squareNumber * -1;
-        alert('i numeri negativi non sarebbero consentiti :P')
+    // clear box
+    document.getElementById('container').innerHTML = "";
+    // random bombs
+    while(bombs.length < 16){
+        z = Math.floor(Math.random() * (squareNumber * squareNumber)) + 1;
+        if(bombs.includes(z) == false){
+            bombs.push(z);
+        }
     }
-    
-    if(squareNumber > 10){
-        squareNumber = 10;
-        alert('hai immesso un numero al di sopra del consentito, abbiamo impostato il numero a 10!');
-    }
-
+    console.log(bombs);
+    // loop
     for (k = 1; k <= squareNumber; ++k) {
         // create row
         let div = document.createElement('div');
@@ -42,7 +36,12 @@ function start(){
             // create element
             let div = document.createElement('div');
             div.setAttribute('id', x );
-            div.setAttribute('class', 'cell');
+            if(bombs.includes(x)) {
+                div.setAttribute('class', 'trigger cell');               
+            }
+            else{
+                div.setAttribute('class', 'safe cell');
+            }
             document.getElementById(`row${k}`).appendChild(div);
             document.getElementById(x).innerHTML = x;
             x++;
@@ -50,22 +49,3 @@ function start(){
     }
         
 }
-
-// clear buttons and other functionalities
-function clearBox(){
-    document.getElementById('container').innerHTML = "";
-    document.getElementById("inputNumber").value = "";
-    x = 1;
-}
-
-function disableButton() {
-    document.getElementById("start").disabled = true;
-    document.getElementById("clear").disabled = false;
-}
-
-function enableButton() {
-    document.getElementById("start").disabled = false;
-    document.getElementById("clear").disabled = true;
-    
-}
-btnClear.disabled = true;
