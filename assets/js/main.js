@@ -1,9 +1,11 @@
 // variables
 let z;
+let bombs = [];
+let score;
+
 // getting the element into the js
 const container = document.getElementById('container');
 const btnStart = document.getElementById('start');
-const btnClear = document.getElementById('clear');
 // linking the functions
 btnStart.addEventListener('click', start);
 
@@ -12,8 +14,8 @@ function start(){
     // input
     squareNumber = parseInt(document.getElementById('difficulty').value);
     // variables
+    score = 0;
     let x = 1;
-    let bombs = [];
     // clear box
     document.getElementById('container').innerHTML = "";
     // random bombs
@@ -36,16 +38,24 @@ function start(){
             // create element
             let div = document.createElement('div');
             div.setAttribute('id', x );
-            if(bombs.includes(x)) {
-                div.setAttribute('class', 'trigger cell');               
-            }
-            else{
-                div.setAttribute('class', 'safe cell');
-            }
+            div.setAttribute('class', 'cell');
+            div.setAttribute('onclick', `bombsCheck(${x})`);               
             document.getElementById(`row${k}`).appendChild(div);
             document.getElementById(x).innerHTML = x;
             x++;
         }
     }
-        
+}
+
+
+function bombsCheck(num){
+    if(bombs.includes(num))
+    {
+        document.getElementById(num).setAttribute('class', 'cell trigger')
+    }
+    else{
+        document.getElementById(num).setAttribute('class', 'cell safe')
+        score++;
+    }
+    console.log(score)
 }
