@@ -2,6 +2,7 @@
 let z;
 let bombs = [];
 let score;
+let maxScore;
 
 // getting the element into the js
 const container = document.getElementById('container');
@@ -15,6 +16,7 @@ function start(){
     squareNumber = parseInt(document.getElementById('difficulty').value);
     // variables
     score = 0;
+    maxScore = (squareNumber * squareNumber) - 16;
     let x = 1;
     bombs = [];
     container.classList.remove("stopClick");
@@ -28,6 +30,7 @@ function start(){
             bombs.push(z);
         }
     }
+
     console.log(bombs);
     // loop
     for (k = 1; k <= squareNumber; ++k) {
@@ -62,9 +65,14 @@ function bombsCheck(num){
         }
     }
     else{
-        document.getElementById(num).setAttribute('class', 'cell safe')
+        document.getElementById(num).setAttribute('class', 'cell safe stopClickElement')
         score++;
         document.getElementById('score').innerHTML = `<h3>Hai ${score} punti.</h3>`;
+        if(score == maxScore){
+            document.getElementById('score').innerHTML = `<h3>Hai ottenuto ${score} punti, il massimo punteggio per questa difficoltá! GG!</h3>`;
+            container.setAttribute('class', 'stopClick')
+
+        }
     }
     console.log(score)
 }

@@ -58,6 +58,9 @@ form{
 .stopClick *{
     pointer-events: none;
 }
+.stopClickElement{
+    pointer-events: none;
+}
 
 #score{
     text-align: center;
